@@ -6,6 +6,14 @@ from .models import *
 
 # Create your views here.
 
-def index(request):
+def landing(request):
     html = 'landing.html'
+    return render(request, html)
+
+def soal(request):
+    html = 'soal.html'
+    return render(request, html)
+
+def hasil(request):
+    html = 'hasil.html'
     return render(request, html)
