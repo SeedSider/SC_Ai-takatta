@@ -9,11 +9,32 @@
         <title>Quiz - Play</title>
         <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">        
         <link rel="stylesheet" type="text/css" href="{% static 'css/soal.css' %}">
-        <!-- <script src="{% static 'js/soal.js' %}"></script> -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script>
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            var csrftoken = getCookie('csrftoken');
+            $.ajaxSetup({
+                beforeSend: function(xhr, settings) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            });
+            
             $(document).ready(function(){
-                var selected_answer = []
+                var selected_answer = {}
                 const progressText = document.getElementById("progressText");
                 const progressBarFull = document.getElementById("progressBarFull");
                 
@@ -37,18 +58,23 @@
                 showQuestion();
 
                 function showQuestion() {
-                    $.getJSON("{% static 'data/soal.json' %}", function(data) {
-                        var quiz = new Quiz(data.questions);
+                    $.getJSON("{% static 'data/soal.json' %}", function(datas) {
+                        var quiz = new Quiz(datas.questions);
                         const MAX_QUESTIONS = quiz.questions.length;
                         let questionCounter = 0;
 
                         populate();
 
                         function populate() {
-                            var q_a = []
                             if(quiz.isEnded()) {
                                 // showResult;
                                 // send to views
+                                $.ajax({
+                                    url: "{% url 'app:qanda' %}",
+                                    type: "POST",
+                                    dataType: "json",
+                                    data: selected_answer,
+                                });
                             }
                             else {
                                 progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`;
@@ -66,14 +92,11 @@
                                 const choices = Array.from($('.choice-text'));
                                 choices.forEach(choice => {
                                     choice.addEventListener("click", e => {
-                                        var q = quiz.getQuestionIndex().question;
-                                        var a = choice.innerHTML;
-                                        q_a.push({q : a});
+                                        selected_answer[questionCounter + 1] = choice.innerHTML
 
-                                        selected_answer.push(q_a);
+                                        console.log(selected_answer)
                                         $("div.choice-container").remove()
                                         $("h2.question-text").remove()
-                                        console.log(selected_answer);
 
                                         quiz.update();
                                         questionCounter++;
