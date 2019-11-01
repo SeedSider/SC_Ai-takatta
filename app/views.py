@@ -138,3 +138,26 @@ def soal(request):
 def hasil(request):
     html = 'hasil.html'
     return render(request, html)
+
+def qanda(request):
+
+    # MASIH ANEH
+
+    # print(request.POST[''])
+    print(request.POST['1'])
+    # response_data = {}
+    # for k, v in request.POST.items():
+    #     question = k
+    #     answer = v
+
+    #     response_data[k] = question
+    #     response_data[v] = answer
+
+    # print(response_data)
+
+    # response_data = {"a" : "s"}
+    # return JsonResponse(response_data)
+
+    # return render(request, 'soal.html')
+    return HttpResponse("success")
+
