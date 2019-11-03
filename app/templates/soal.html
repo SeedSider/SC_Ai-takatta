@@ -10,33 +10,14 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">        
         <link rel="stylesheet" type="text/css" href="{% static 'css/soal.css' %}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdn.rawgit.com/mgalante/jquery.redirect/master/jquery.redirect.js"></script>
+
         <script>
-            function getCookie(name) {
-                var cookieValue = null;
-                if (document.cookie && document.cookie !== '') {
-                    var cookies = document.cookie.split(';');
-                    for (var i = 0; i < cookies.length; i++) {
-                        var cookie = jQuery.trim(cookies[i]);
-                        // Does this cookie string begin with the name we want?
-                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                            break;
-                        }
-                    }
-                }
-                return cookieValue;
-            }
-            var csrftoken = getCookie('csrftoken');
-            $.ajaxSetup({
-                beforeSend: function(xhr, settings) {
-                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                }
-            });
-            
             $(document).ready(function(){
                 var selected_answer = {}
                 const progressText = document.getElementById("progressText");
                 const progressBarFull = document.getElementById("progressBarFull");
+                const loader = document.getElementById("loader");
                 
                 function Quiz(questions) {
                     this.questions = questions;
@@ -56,6 +37,8 @@
                 }
 
                 showQuestion();
+                game.classList.remove("hidden");
+                loader.classList.add("hidden");
 
                 function showQuestion() {
                     $.getJSON("{% static 'data/soal.json' %}", function(datas) {
@@ -67,14 +50,9 @@
 
                         function populate() {
                             if(quiz.isEnded()) {
-                                // showResult;
-                                // send to views
-                                $.ajax({
-                                    url: "{% url 'app:qanda' %}",
-                                    type: "POST",
-                                    dataType: "json",
-                                    data: selected_answer,
-                                });
+                                game.classList.add("hidden");
+                                loader.classList.remove("hidden");
+                                $.redirect("{% url 'app:hasil' %}", selected_answer, "POST"); 
                             }
                             else {
                                 progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`;
@@ -113,8 +91,8 @@
     </head>
     <body>
         <div class="container">
-        <!-- <div id="loader"></div> -->
-            <div id="soal" class="justify-center flex-column">
+        <div id="loader"></div>
+            <div id="game" class="justify-center flex-column hidden">
                 <div id="hud">
                     <div id="hud-item">
                         <p id="progressText" class="hud-prefix">
