@@ -7,5 +7,4 @@ urlpatterns = [
 	path('', landing, name='landing'),
 	path('soal', soal, name='soal'),
 	path('hasil', hasil, name='hasil'),
-	path('qanda', qanda, name='qanda')
 ]
