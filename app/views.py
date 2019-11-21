@@ -109,10 +109,7 @@ def createTree():
 				node.add_child(Node("q4", 0.72))
 				node.add_child(Node("q4", 0.82))
 
-
 	return {rootA, rootB, rootC}
-
-
 
 def decide():
 	# keluarga, academis, sendiri, lingkungan = 0
@@ -129,7 +126,7 @@ def decide():
 
 def landing(request):
     html = 'landing.html'
-    decide()
+    # decide()
     return render(request, html)
 
 def soal(request):
