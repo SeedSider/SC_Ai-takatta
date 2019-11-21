@@ -125,3 +125,46 @@
   input::placeholder {
     color: #aaa;
   }
+
+  /* LOADER */
+  #loader {
+    border: 1.6rem solid white;
+    border-radius: 50%;
+    border-top: 1.6rem solid #56a5eb;
+    width: 12rem;
+    height: 12rem;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    h1 {
+      font-size: 4rem;
+      color: #56a5eb;
+      margin-bottom: 4rem;
+    }
+    
+    h1 > span {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    
+    h2 {
+      font-size: 3rem;
+      margin-bottom: 3rem;
+      font-weight: 700;
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+  }
