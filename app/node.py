@@ -12,7 +12,8 @@ class Node:
 
         assert isinstance(cpt, dict)
         for vs, p in cpt.items():
-            assert isinstance(vs, tuple) and len(vs) == len(parents)
+            # assert isinstance(vs, tuple) and len(vs) == len(parents)
+            assert isinstance(vs, tuple)            
             assert all(isinstance(v, bool) for v in vs)
             assert 0 <= p <= 1
 

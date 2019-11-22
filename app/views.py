@@ -2,11 +2,13 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from .forms import *
 from .models import *
+from .dataconstructor import *
 from django.views.decorators.csrf import csrf_exempt
 
 def landing(request):
     html = 'landing.html'
     # decide()
+
     return render(request, html)
 
 def soal(request):
@@ -16,7 +18,9 @@ def soal(request):
 @csrf_exempt
 def hasil(request):
     # bikin logic nya disini aja
-    html = 'hasil.html'
-    print (request.POST)
-    
-    return render(request, html)
+	bayesNetwork = generateBayesNetwork()
+	print(bayesNetwork)
+	answer = request.POST
+	print(answer)
+	html = 'hasil.html'
+	return render(request, html)
