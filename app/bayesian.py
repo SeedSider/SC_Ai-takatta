@@ -10,7 +10,7 @@ class BayesianNetwork:
             self.add(node_spec)
 
     def add(self, node_spec):
-        node = Node(*node_spec)
+        node = node_spec
         assert node.variable not in self.variables
         assert all((parent in self.variables) for parent in node.parents)
         self.nodes.append(node)
