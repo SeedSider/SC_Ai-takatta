@@ -11,8 +11,8 @@ import math
 import csv
 import random
 
-# T = Bool(True)
-# F = Bool(False)
+T = Bool(True)
+F = Bool(False)
 
 
 def landing(request):
