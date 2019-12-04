@@ -149,7 +149,6 @@ body {
       max-width: 535px;
       margin-bottom: 0; }
   
-  
   .about-area {
     background-color: #ecf5ff;
   }
@@ -273,7 +272,6 @@ body {
     .team:hover .middle {
       opacity: 1; }
   
-  
   .service-area {
     background: #ecf5ff; }
     .service-area.white {
@@ -331,14 +329,14 @@ body {
       -o-transform: translateY(-10px);
       transform: translateY(-10px); }
   
-  
   .footer-area {
     padding: 100px 0; 
     background: #f9f9ff;}
     @media (max-width: 1024px) {
       .footer-area {
-        padding: 60px 0; } 
-      }
+        padding: 60px 0; } }
+    .footer-area .footer-logo {
+      text-align: center; }
     .footer-area .footer-social {
       text-align: center;
       margin: 25px 0px 50px; }
@@ -365,4 +363,3 @@ body {
         margin-bottom: 0; }
       .footer-area .footer-bottom a {
         color: #56a5eb; }
-  
