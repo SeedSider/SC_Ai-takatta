@@ -19,6 +19,10 @@ def landing(request):
     # decide()
     return render(request, html)
 
+def game(request):
+    html = 'game.html'
+    return render(request, html)
+
 def soal(request):
     html = 'soal.html'
     return render(request, html)
@@ -65,7 +69,7 @@ def hasil(request):
 	#     .add('JohnCalls', ['Alarm'], {T: 0.90, F: 0.05})
 	#     .add('MaryCalls', ['Alarm'], {T: 0.70, F: 0.01}))
 
-	# globalize(alarm_net.lookup) 
+    # globalize(alarm_net.lookup) 
 	# print(alarm_net.variables)
 	# print(P(Burglary))
     

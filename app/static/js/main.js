@@ -75,5 +75,79 @@
         },delay);
     });
 
+    new WOW().init();
+
+    //------- Go to Top --------// 
+    $(window).on("scroll", function () {
+        if ($(this).scrollTop() > 100) {
+            $('#header1').addClass('header-scrolled1');
+            $('#back-top').addClass('back-top-animation');
+        } else {
+            $('#header1').removeClass('header-scrolled1');
+            $('#back-top').removeClass('back-top-animation');
+        }
+    });
+
+    /* ---------------------------------------------
+        scroll body to 0px on click
+     --------------------------------------------- */
+     $('#back-top a').on("click", function () {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 1000);
+        return false;
+    });
+	
+    
+    $(document).ready(function () {
+
+        $('html, body').hide();
+
+        if (window.location.hash) {
+
+            setTimeout(function () {
+
+                $('html, body').scrollTop(0).show();
+
+                $('html, body').animate({
+
+                    scrollTop: $(window.location.hash).offset().top - 108
+
+                }, 1000)
+
+            }, 0);
+
+        } else {
+
+            $('html, body').show();
+
+        }
+
+    });
+
+    //------- Owl Carusel  js --------//
+    if($('.active-brand-carusel').length) {
+        $('.active-brand-carusel').owlCarousel({
+            items: 5,
+            loop: true,
+            autoplayHoverPause: true,
+            autoplay: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                768: {
+                    items: 3,
+                },
+                991: {
+                    items: 4,
+                },
+                1024: {
+                    items: 5,
+                }
+            }
+        });
+    }
+
 
 })(jQuery);
