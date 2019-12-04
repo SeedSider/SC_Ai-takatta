@@ -337,6 +337,11 @@ body {
         padding: 60px 0; } }
     .footer-area .footer-logo {
       text-align: center; }
+      .footer-area .footer-logo h4 {
+        font-size: 21px;
+        color: #56a5eb;
+        font-weight: 700;
+        margin-top: 48px; }
     .footer-area .footer-social {
       text-align: center;
       margin: 25px 0px 50px; }
