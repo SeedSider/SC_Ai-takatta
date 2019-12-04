@@ -11,14 +11,12 @@ import math
 import csv
 import random
 
-T = Bool(True)
-F = Bool(False)
-
+T = bool(True)
+F = bool(False)
 
 def landing(request):
     html = 'landing.html'
     # decide()
-
     return render(request, html)
 
 def game(request):
@@ -33,14 +31,14 @@ def soal(request):
 def hasil(request):
     # bikin logic nya disini aja
     net = (BayesNet()
-	.add('a1',[], 0.1)
-	.add('a2',[], 0.1)
-	.add('a3',[], 0.1)
-	.add('a4',[], 0.1)
-	.add('a5',[], 0.1)
-	.add('a6',[], 0.1)
-	)
-	
+    .add('a1',[], 0.1)
+    .add('a2',[], 0.1)
+    .add('a3',[], 0.1)
+    .add('a4',[], 0.1)
+    .add('a5',[], 0.1)
+    .add('a6',[], 0.1)
+    )
+
     dct = {}
     with open('dataset.csv') as csvfile:
         readCSV = csv.reader(csvfile, delimiter=',')
@@ -56,7 +54,7 @@ def hasil(request):
                     tmp.append(row[i])
                 else:
                     tmp.append(F)
-            key = (tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5])
+                key = (tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5])
 	        # print(key)
             dct[key]= float(tmp[12])
 	        # print (dct)
@@ -74,18 +72,17 @@ def hasil(request):
     # globalize(alarm_net.lookup) 
 	# print(alarm_net.variables)
 	# print(P(Burglary))
-
+    
     globalize(net.lookup) 
     print(net.variables)
     print(P(a7, {a1:F, a2:F, a3:T, a4:T,  a5:T, a6:T}))
-    # print(a7.cpt)
+	# print(a7.cpt)
     bayesNetwork = generateBayesNetwork()
     print(bayesNetwork)
     answer = request.POST
     print(answer)
     html = 'hasil.html'
     return render(request, html)
-
 
 class BayesNet(object):
     "Bayesian network: a graph of variables connected by parent links."
