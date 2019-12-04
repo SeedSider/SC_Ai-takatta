@@ -2,23 +2,201 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Stress Detector Quiz</title>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <div class="container">
-        <div id="home" class="flex-center flex-column">
-            <h1 style="text-align: center">Strees Detector Quiz</h1>
-            <a class="btn" href="{% url 'app:soal' %}">Play</a>
-            <a class="btn" href="#">About Me</a>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Stress Detector Quiz</title>
+    
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/landing.css' %}">
+    
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    
+    <script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+</head>
+<body>
+    <!-- Start About Area -->
+	<section class="about-area section-gap">
+            <div class="container">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-lg-6 about-left">
+                        <iframe width="520" height="360" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+                        </iframe>
+                    </div>
+                    <div class="col-lg-5 col-md-12 about-right">
+                        <div class="section-title">
+                            <h2>about project</h2>
+                        </div>
+                        <div class="mb-50 wow fadeIn" data-wow-duration=".8s">
+                            <p>
+                                Kuis ini adalah Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                            </p>
+                            <p>That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often
+                                laughed.
+                            </p>
+                        </div>
+                        <a class="btn" href="{% url 'app:game' %}">Play</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End About Area -->
+        <section class="team-area section-gap" id="team">
+            <div class="container">
+                <div class="row d-flex justify-content-between align-items-end mb-80">
+                    <div class="col-lg-6">
+                        <div class="section-title">
+                            <h2>Our Team</h2>
+                            <p>Tim kami terdiri dari 4 orang yang sedang belajar AI "for humanity"</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="filters-content">
+                    <div class="row grid">
+                        <div class="team col-lg-3 col-md-6 col-sm-6 all creative wow fadeInUp" data-wow-duration="2s">
+                            <div class="relative">
+                                <div class="thumb">
+                                    <div class="overlay overlay-bg"></div>
+                                    <img class="image img-fluid" src="https://media.licdn.com/dms/image/C5603AQG7Gk3BcZlcPg/profile-displayphoto-shrink_800_800/0?e=1580947200&v=beta&t=bQq7KjLB3dS-GimEgVzDfgmYEj_4kg6h4dVS9oC4bU4" alt="">
+                                </div>
+                                <div class="middle">
+                                    <h4>Dhipta Raditya</h4>
+                                    <div class="cat">AI Engineer</div>
+                                </div>
+                                <a class="overlay" href="https://www.linkedin.com/in/dhipta-raditya-9a1bb6152/"></a>
+                            </div>
+                        </div>
+    
+                        <div class="team col-lg-3 col-md-6 col-sm-6 all web-design branding wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
+                            <div class="relative">
+                                <div class="thumb">
+                                    <div class="overlay overlay-bg"></div>
+                                    <img class="image" src="https://media.licdn.com/dms/image/C5103AQESBLuuWNHN5g/profile-displayphoto-shrink_800_800/0?e=1580947200&v=beta&t=w3PGo6tEiUHWeOClZH1BLDRRXpYxdbNoRGp6iWYPL8Y" alt="">
+                                </div>
+                                <div class="middle">
+                                    <h4>Usman Sidiq</h4>
+                                    <div class="cat">AI Engineer</div>
+                                </div>
+                                <a class="overlay" href="https://www.linkedin.com/in/usman-sidiq/"></a>
+                            </div>
+                        </div>
+    
+                        <div class="team col-lg-3 col-md-6 col-sm-6 all branding web-design wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.4s">
+                            <div class="relative">
+                                <div class="thumb">
+                                    <div class="overlay overlay-bg"></div>
+                                    <img class="image img-fluid" src="https://media.licdn.com/dms/image/C5103AQHGXMFJdR3pUQ/profile-displayphoto-shrink_800_800/0?e=1580947200&v=beta&t=3Musx5GjZmhEtPG7pI0yjw-7cykcm_dcwVG6y3sxlOU" alt="">
+                                </div>
+                                <div class="middle">
+                                    <h4>Razaqa Dhafin</h4>
+                                    <div class="cat">Back-End Engineer</div>
+                                </div>
+                                <a class="overlay" href="https://www.linkedin.com/in/razaqa-dhafin/"></a>
+                            </div>
+                        </div>
+    
+                        <div class="team col-lg-3 col-md-6 col-sm-6 all web-design wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.6s">
+                            <div class="relative">
+                                <div class="thumb">
+                                    <div class="overlay overlay-bg"></div>
+                                    <img class="image img-fluid" src="https://i.ibb.co/yRHjTcF/10527555-867558336590301-4976539022065500227-n.jpg" alt="">
+                                </div>
+                                <div class="middle">
+                                    <h4>Irfan Aziz</h4>
+                                    <div class="cat">Front-End Engineer</div>
+                                </div>
+                                <a class="overlay" href="https://www.linkedin.com/in/irfan-aziz-al-amin-16967b142/"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section class="service-area section-gap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title">
+                            <h2>Stress Level</h2>
+                            <p>Dibawah merupakan level kesetresan dalam quiz ini yang 
+                            menunjukkan tingkat kesetresan anda</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="service wow fadeInUp" data-wow-duration="1s">
+                            <h4>
+                                <span>Tidak</span> Stress
+                            </h4>
+                            <p>Anda dinyatakan tidak stress jika presentase hasil quiz anda dibawah <b>30</b></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="service wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+                            <h4>
+                                <span>Sedikit</span> Stress
+                            </h4>
+                            <p>Anda dinyatakan tidak stress jika presentase hasil quiz anda diantara <b>50</b> dan <b>70</b></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="service wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s">
+                            <h4>
+                                <span>Lumayan</span> Stress
+                            </h4>
+                            <p>Anda dinyatakan tidak stress jika presentase hasil quiz anda diantara <b>70</b> dan <b>90</b></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="service wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+                            <h4>
+                                <span>Sangat</span> Stress
+                            </h4>
+                            <p>Anda dinyatakan tidak stress jika presentase hasil quiz anda diatas <b>90</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <div id="back-top">
+            <a title="Go to Top" href="#">
+                <i class="lnr lnr-arrow-up"></i>
+            </a>
         </div>
-        </div>
-    </body>
+    
+        <!-- start footer Area -->
+        <footer class="footer-area">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="footer-top flex-column">
+                            <div>	
+                                <h4>Follow Us</h4>
+                            </div>
+                            <div class="footer-social">
+                                <a href="https://gitlab.com/dhafins18/sistem_cerdas_ai_takatta.git"><i class="fa fa-gitlab"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row footer-bottom justify-content-center">
+                    <p class="col-lg-8 col-sm-12 footer-text">
+    Copyright &copy; All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://gitlab.com/dhafins18/sistem_cerdas_ai_takatta.git">us</a>
+                </div>
+            </div>
+        </footer>
+        <!-- End footer Area -->
+</body>
 </html>

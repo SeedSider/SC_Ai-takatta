@@ -11,14 +11,18 @@ import math
 import csv
 import random
 
-T = Bool(True)
-F = Bool(False)
+# T = Bool(True)
+# F = Bool(False)
 
 
 def landing(request):
     html = 'landing.html'
     # decide()
 
+    return render(request, html)
+
+def game(request):
+    html = 'game.html'
     return render(request, html)
 
 def soal(request):
@@ -29,37 +33,36 @@ def soal(request):
 def hasil(request):
     # bikin logic nya disini aja
     net = (BayesNet()
-    .add('a1',[], 0.1)
-    .add('a2',[], 0.1)
-    .add('a3',[], 0.1)
-    .add('a4',[], 0.1)
-    .add('a5',[], 0.1)
-    .add('a6',[], 0.1)
-    )
-
-	dct = {}
-	with open('dataset.csv') as csvfile:
-	    readCSV = csv.reader(csvfile, delimiter=',')
-	    for row in readCSV:
-	        tmp = []
+	.add('a1',[], 0.1)
+	.add('a2',[], 0.1)
+	.add('a3',[], 0.1)
+	.add('a4',[], 0.1)
+	.add('a5',[], 0.1)
+	.add('a6',[], 0.1)
+	)
+	
+    dct = {}
+    with open('dataset.csv') as csvfile:
+        readCSV = csv.reader(csvfile, delimiter=',')
+        for row in readCSV:
+            tmp = []
 	        # print(row)
-	        if(row[0][0]=='Q'):
-	            continue
-	        for i in range(len(row)):
-
-	            if(row[i][0]=='T'):
-	                tmp.append(T)
-	            elif i>5:
-	                tmp.append(row[i])
-	            else:
-	                tmp.append(F)
-	        key = (tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5])
+            if(row[0][0]=='Q'):
+                continue
+            for i in range(len(row)):
+                if(row[i][0]=='T'):
+                    tmp.append(T)
+                elif i>5:
+                    tmp.append(row[i])
+                else:
+                    tmp.append(F)
+            key = (tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5])
 	        # print(key)
-	        dct[key]= float(tmp[12])
+            dct[key]= float(tmp[12])
 	        # print (dct)
 
 	# print(dct)
-	net.add('a7', ['a1','a2','a3','a4','a5','a6'], dct)
+    net.add('a7', ['a1','a2','a3','a4','a5','a6'], dct)
 
 	# alarm_net = (BayesNet()
 	#     .add('Burglary', [], 0.001)
@@ -68,20 +71,20 @@ def hasil(request):
 	#     .add('JohnCalls', ['Alarm'], {T: 0.90, F: 0.05})
 	#     .add('MaryCalls', ['Alarm'], {T: 0.70, F: 0.01}))
 
-	# globalize(alarm_net.lookup) 
+    # globalize(alarm_net.lookup) 
 	# print(alarm_net.variables)
 	# print(P(Burglary))
 
-	globalize(net.lookup) 
-	print(net.variables)
-	print(P(a7, {a1:F, a2:F, a3:T, a4:T,  a5:T, a6:T}))
-	# print(a7.cpt)
-	bayesNetwork = generateBayesNetwork()
-	print(bayesNetwork)
-	answer = request.POST
-	print(answer)
-	html = 'hasil.html'
-	return render(request, html)
+    globalize(net.lookup) 
+    print(net.variables)
+    print(P(a7, {a1:F, a2:F, a3:T, a4:T,  a5:T, a6:T}))
+    # print(a7.cpt)
+    bayesNetwork = generateBayesNetwork()
+    print(bayesNetwork)
+    answer = request.POST
+    print(answer)
+    html = 'hasil.html'
+    return render(request, html)
 
 
 class BayesNet(object):
