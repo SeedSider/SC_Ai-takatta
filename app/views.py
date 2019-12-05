@@ -11,6 +11,8 @@ import math
 import csv
 import random
 
+response = {}
+
 T = bool(True)
 F = bool(False)
 
@@ -75,14 +77,34 @@ def hasil(request):
     
     globalize(net.lookup) 
     print(net.variables)
-    print(P(a7, {a1:F, a2:F, a3:T, a4:T,  a5:T, a6:T}))
+
+    #response['test'] = round(P(a7, {a1:T, a2:T, a3:T, a4:T,  a5:T, a6:T})[T],4) * 100
+    print(P(a7, {a1:T, a2:T, a3:T, a4:T,  a5:T, a6:T})[T]*100)
 	# print(a7.cpt)
     bayesNetwork = generateBayesNetwork()
     print(bayesNetwork)
-    answer = request.POST
-    print(answer)
+    answer = dict(request.POST)
+    val1 = getData(answer.__getitem__('1'))
+    val2 = getData(answer.__getitem__('2'))
+    val3 = getData(answer.__getitem__('3'))
+    val4 = getData(answer.__getitem__('4'))
+    val5 = getData(answer.__getitem__('5'))
+    val6 = getData(answer.__getitem__('6'))
+    bayesValue = P(a7, {a1:val1, a2:val2, a3:val3, a4:val4,  a5:val5, a6:val6})[T] * 100
+    response['test'] = float("{0:.2f}".format(bayesValue))
+
     html = 'hasil.html'
-    return render(request, html)
+    return render(request, html, response)
+
+
+
+def getData(object):
+	if object == ['Iya']:
+		return T
+	elif object == ['Tidak']:
+		return F
+	else:
+		return
 
 class BayesNet(object):
     "Bayesian network: a graph of variables connected by parent links."
