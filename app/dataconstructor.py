@@ -5,8 +5,8 @@ import os
 from django.conf import settings
 
 def generateBayesNetwork():
-    rootDatasetDir = settings.BASE_DIR + '/static/data/dataset-all-factors.csv'
-    leafDatasetDir = settings.BASE_DIR + '/app/static/data/dataset-stress-given-all-factors.csv'    
+    rootDatasetDir = 'app/static/data/dataset.csv'
+    leafDatasetDir = 'app/static/data/dataset.csv'
     rootNodesList = rootNodes(rootDatasetDir)
     leafNodesList = leafNodes(leafDatasetDir)
     allNodes = rootNodesList + leafNodesList
