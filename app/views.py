@@ -40,7 +40,7 @@ def hasil(request):
     )
 
     dct = {}
-    with open('dataset.csv') as csvfile:
+    with open('app/static/data/dataset.csv') as csvfile:
         readCSV = csv.reader(csvfile, delimiter=',')
         for row in readCSV:
             tmp = []
@@ -54,7 +54,7 @@ def hasil(request):
                     tmp.append(row[i])
                 else:
                     tmp.append(F)
-                key = (tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5])
+            key = (tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5])
 	        # print(key)
             dct[key]= float(tmp[12])
 	        # print (dct)
