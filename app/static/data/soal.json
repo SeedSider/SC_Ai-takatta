@@ -1,51 +1,45 @@
 {
     "questions": [
         {
-            "question": "Apakah anda merasa beban akademik anda saat ini berat, baik dari SKS maupun tugas??",
+            "question": "Apakah anda merasa kesulitan dalam akademik?",
             "answers": [
                 "Iya",
-                "Tidak",
-                "Skip"
+                "Tidak"
             ]
         },
         {
-            "question": "Seberapa sulit perkuliahan yang anda rasakan sampai saat ini? (Skala 1-5) -> GANTI SOAL",
+            "question": "Apakah anda merasa beban akademik anda saat ini berat, baik dari SKS maupun tugas?",
             "answers": [
                 "Iya",
-                "Tidak",
-                "Skip"
+                "Tidak"                
             ]
         },
         {
             "question": "Apakah anda merasa orangtua Anda kurang menyayangi Anda?",
             "answers": [
                 "Iya",
-                "Tidak",
-                "Skip"
+                "Tidak"
             ]
         },
         {
             "question": "Apakah Anda merasa sering dikekang oleh orangtua Anda, baik dalam memutuskan sesuatu ataupun hal lain?",
             "answers": [
                 "Iya",
-                "Tidak",
-                "Skip"
+                "Tidak"
             ]
         },
         {
             "question": "Apakah dalam bergaul anda merasa di-bully/dijauhi?",
             "answers": [
                 "Iya",
-                "Tidak",
-                "Skip"
+                "Tidak"
             ]
         },
         {
-            "question": "Seberapa nyaman anda ketika bergaul dengan teman-teman anda? (Skala 1-5) -> GANTI SOAL",
+            "question": "Apakah anda merasa nyaman bergaul dengan teman-teman anda?",
             "answers": [
                 "Iya",
-                "Tidak",
-                "Skip"
+                "Tidak"
             ]
         }
     ]
