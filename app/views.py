@@ -63,26 +63,10 @@ def hasil(request):
 
 	# print(dct)
     net.add('a7', ['a1','a2','a3','a4','a5','a6'], dct)
-
-	# alarm_net = (BayesNet()
-	#     .add('Burglary', [], 0.001)
-	#     .add('Earthquake', [], 0.002)
-	#     .add('Alarm', ['Burglary', 'Earthquake'], {(T, T): 0.95, (T, F): 0.94, (F, T): 0.29, (F, F): 0.001})
-	#     .add('JohnCalls', ['Alarm'], {T: 0.90, F: 0.05})
-	#     .add('MaryCalls', ['Alarm'], {T: 0.70, F: 0.01}))
-
-    # globalize(alarm_net.lookup) 
-	# print(alarm_net.variables)
-	# print(P(Burglary))
     
     globalize(net.lookup) 
-    print(net.variables)
 
-    #response['test'] = round(P(a7, {a1:T, a2:T, a3:T, a4:T,  a5:T, a6:T})[T],4) * 100
-    print(P(a7, {a1:T, a2:T, a3:T, a4:T,  a5:T, a6:T})[T]*100)
-	# print(a7.cpt)
     bayesNetwork = generateBayesNetwork()
-    print(bayesNetwork)
     answer = dict(request.POST)
     val1 = getData(answer.__getitem__('1'))
     val2 = getData(answer.__getitem__('2'))
@@ -90,7 +74,9 @@ def hasil(request):
     val4 = getData(answer.__getitem__('4'))
     val5 = getData(answer.__getitem__('5'))
     val6 = getData(answer.__getitem__('6'))
-    bayesValue = P(a7, {a1:val1, a2:val2, a3:val3, a4:val4,  a5:val5, a6:val6})[T] * 100
+    dataInput = {a1:val1, a2:val2, a3:val3, a4:val4,  a5:val5, a6:val6}
+    dataResult = dict(filter(lambda x:x[1], dataInput.items()))
+    bayesValue = enumeration_ask(a7, dataResult, net)[T] * 100
     response['test'] = float("{0:.2f}".format(bayesValue))
 
     html = 'hasil.html'
@@ -190,3 +176,38 @@ def sample(probdist):
 def globalize(mapping):
     "Given a {name: value} mapping, export all the names to the `globals()` namespace."
     globals().update(mapping)
+
+def joint_distribution(net):
+    "Given a Bayes net, create the joint distribution over all variables."
+    return ProbDist({row: prod(P_xi_given_parents(var, row, net)
+                               for var in net.variables)
+                     for row in all_rows(net)})
+
+def all_rows(net): return itertools.product(*[var.domain for var in net.variables])
+
+def P_xi_given_parents(var, row, net):
+    "The probability that var = xi, given the values in this row."
+    dist = P(var, Evidence(zip(net.variables, row)))
+    xi = row[net.variables.index(var)]
+    return dist[xi]
+
+def prod(numbers):
+    "The product of numbers: prod([2, 3, 5]) == 30. Analogous to `sum([2, 3, 5]) == 10`."
+    result = 1
+    for x in numbers:
+        result *= x
+    return result
+
+def enumeration_ask(X, evidence, net):
+    "The probability distribution for query variable X in a belief net, given evidence."
+    i    = net.variables.index(X) # The index of the query variable X in the row
+    dist = defaultdict(float)     # The resulting probability distribution over X
+    for (row, p) in joint_distribution(net).items():
+        if matches_evidence(row, evidence, net):
+            dist[row[i]] += p
+    return ProbDist(dist)
+
+def matches_evidence(row, evidence, net):
+    "Does the tuple of values for this row agree with the evidence?"
+    return all(evidence[v] == row[net.variables.index(v)]
+               for v in evidence)
