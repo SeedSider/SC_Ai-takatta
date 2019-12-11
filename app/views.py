@@ -74,9 +74,12 @@ def hasil(request):
     val4 = getData(answer.__getitem__('4'))
     val5 = getData(answer.__getitem__('5'))
     val6 = getData(answer.__getitem__('6'))
+
     dataInput = {a1:val1, a2:val2, a3:val3, a4:val4,  a5:val5, a6:val6}
-    dataResult = dict(filter(lambda x:x[1], dataInput.items()))
+    dataResult = {key: value for key, value in dataInput.items() if value is not None}
     bayesValue = enumeration_ask(a7, dataResult, net)[T] * 100
+    print(dataResult)
+    print(enumeration_ask(a7, {a1:F, a2:F, a3:F, a4:F, a5:F, a6:F}, net)[T]*100)
     response['test'] = float("{0:.2f}".format(bayesValue))
 
     html = 'hasil.html'
